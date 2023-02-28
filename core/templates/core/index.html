@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+
+{% block title %}HOME{% endblock title %}
+
+{% block content %} 
+
+
+{% for data in start %}
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        <h3> 
+            Location: {{data.site}} <br>
+            Cause: {{data.cause}} <br>
+            Number Of Vehicle: {{data.number_of_vehicle}} <br>
+            People Injured: {{data.people_injured}} 
+        </h3>
+
+    {% endfor %}
+
+    
+    {% for data in dest_data %}
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    
+    <h3> 
+            Location: {{data.site}} <br>
+            Cause: {{data.cause}} <br>
+            Number Of Vehicle: {{data.number_of_vehicle}} <br>
+            People Injured: {{data.people_injured}} 
+        </h3>
+    
+    {% endfor %}
+
+    {% for data in way %}
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    
+    <h3> 
+            Location: {{data.site}} <br>
+            Cause: {{data.cause}} <br>
+            Number Of Vehicle: {{data.number_of_vehicle}} <br>
+            People Injured: {{data.people_injured}} 
+        </h3>
+    
+    {% endfor %}
+    
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+
+{% endblock content %}
