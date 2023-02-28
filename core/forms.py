@@ -13,7 +13,8 @@ class RegistrationForm(UserCreationForm):
 
 
 class UserRouteForm(forms.ModelForm):
+	landmark2 = forms.CharField(required=False, max_length=50)
+
 	class Meta:
-		model = User
-		fields = '__all__'
-		exclude = 'user'
+		model = UserRoute
+		fields = ['start', 'destination', 'vehicle', 'number_of_traveller', 'landmark1', 'landmark2']
