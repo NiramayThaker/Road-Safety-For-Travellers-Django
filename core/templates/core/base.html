@@ -35,7 +35,7 @@
                 </form>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout | {{user.username}}</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-road"> App</span></a></li>
+                    <li><a href="{% url 'route_form.html' %}"><span class="glyphicon glyphicon-road"> Set Route</span></a></li>
                     
                 {% else %}
 

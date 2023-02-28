@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UserRouteForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
@@ -24,3 +24,10 @@ def sign_up(request):
 
 	context = {'form': form}
 	return render(request, 'registration/signup.html', context=context)
+
+
+def route_form(reqeust):
+	form = UserRouteForm()
+
+	context = {'form': form}
+	return render(reqeust, 'core/route_form.html', context=context)
