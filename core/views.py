@@ -4,7 +4,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import AccidentDetail, UserRoute
 from django.db.models import Q
-
+from bs4 import BeautifulSoup
+import requests
 
 # Create your views here.
 
@@ -61,4 +62,13 @@ def route_form(request):
 
 @login_required(login_url='login')
 def emergency_contact(request):
-	return render(request, 'core/emergency_contact.html')
+	url = "https://www.indiatoday.in/information/story/list-of-emergency-numbers-in-india-1464566-2019-02-26"
+	response = requests.get(url)
+	response_url = response.text
+	soup = BeautifulSoup(response_url, "html.parser")
+
+	get_contact = soup.find(name="div", class_="jsx-99cc083358cc2e2d Story_description__fq_4S description")
+	contact = get_contact.find(name="ul").getText()
+	context = {'contact': contact}
+
+	return render(request, 'core/emergency_contact.html', context=context)
