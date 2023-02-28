@@ -21,14 +21,15 @@ def index(request):
 
 	try:
 		user = UserRoute.objects.get(user=request.user)
+
 		start_acc_data = AccidentDetail.objects.filter(site=user.start)
 		way = AccidentDetail.objects.filter(site=user.landmark1)
 		dest_acc_data = AccidentDetail.objects.filter(site=user.destination)
 
 		context = {'start': start_acc_data, 'dest_data': dest_acc_data, 'way': way}
-
 	except:
-		context = None
+		a = None
+		context = {'start': a, 'dest_data': a, 'way': a}
 
 	return render(request, 'core/index.html', context=context)
 
