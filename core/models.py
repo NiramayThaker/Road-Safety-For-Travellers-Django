@@ -21,4 +21,7 @@ class UserRoute(models.Model):
 	vehicle = models.CharField(max_length=50)
 	number_of_traveller = models.IntegerField()
 	landmark1 = models.CharField(max_length=50)
-	# landmark2 = models.CharField(max_length=50)
+	landmark2 = models.CharField(max_length=50)
+
+	def __str__(self):
+		return f"{self.start} - {self.destination}"

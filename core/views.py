@@ -26,8 +26,16 @@ def sign_up(request):
 	return render(request, 'registration/signup.html', context=context)
 
 
-def route_form(reqeust):
+def route_form(request):
 	form = UserRouteForm()
+	if request.method == "POST":
+		form = UserRouteForm(request.POST)
+		if form.is_valid():
+			route = form.save(commit=False)
+			route.user = request.user
+			route.save()
+
+			return redirect('home')
 
 	context = {'form': form}
-	return render(reqeust, 'core/route_form.html', context=context)
+	return render(request, 'core/route_form.html', context=context)
