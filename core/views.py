@@ -26,6 +26,7 @@ def sign_up(request):
 	return render(request, 'registration/signup.html', context=context)
 
 
+@login_required(login_url='login')
 def route_form(request):
 	form = UserRouteForm()
 	if request.method == "POST":
