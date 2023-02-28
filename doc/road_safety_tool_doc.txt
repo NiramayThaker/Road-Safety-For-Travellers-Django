@@ -1,0 +1,28 @@
+Road Safety Tool:
+
+Accident data: accident site, date-time, occurence of accident,
+cause, number of casualities.
+
+Other info: Weather Information, Emergency Number as per user location
+
+Google map integration: Show accident info on Gmap App 
+
+Extra Features: Road close update, traffic update, working road updates, etc..
+
+New things to deal with:
+-> Showing data and alerts on map 
+
+Things to search for:
+-> API's to find data of weather, Emergency contact and road condition
+as per their location
+
+Data integrity:
+-> To check if data is valid or not through cross verification of data
+
+Steps:
+1) User info collection: Login() SignUp(Username, email, pswd, pswd2) SafetySuggestionForm(City, state, path[source, destination])
+2) Prior Accident Data: accident site, date-time, occurence of accident, cause, number of casualities.
+3) Featching Weather and Road related data as per users route
+4) Data Filterization and Displaying it as per the route user has selected in SafetySuggestionForm
+5) Showing alerts in GMap
+
