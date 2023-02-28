@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import RegistrationForm, UserRouteForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -7,12 +7,11 @@ from django.db.models import Q
 from bs4 import BeautifulSoup
 import requests
 
+
 # Create your views here.
 
 @login_required(login_url='/login')
 def index(request):
-	user = UserRoute.objects.get(user=request.user)
-
 	# accident_data = AccidentDetail.objects.filter(
 	# 	Q(site__icontains=user.start) |
 	# 	Q(site__icontains=user.destination) |
@@ -20,11 +19,16 @@ def index(request):
 	# 	Q(site__icontains=user.landmark2)
 	# )
 
-	start_acc_data = AccidentDetail.objects.filter(site=user.start)
-	way = AccidentDetail.objects.filter(site=user.landmark1)
-	dest_acc_data = AccidentDetail.objects.filter(site=user.destination)
+	try:
+		user = UserRoute.objects.get(user=request.user)
+		start_acc_data = AccidentDetail.objects.filter(site=user.start)
+		way = AccidentDetail.objects.filter(site=user.landmark1)
+		dest_acc_data = AccidentDetail.objects.filter(site=user.destination)
 
-	context = {'start': start_acc_data, 'dest_data': dest_acc_data, 'way': way}
+		context = {'start': start_acc_data, 'dest_data': dest_acc_data, 'way': way}
+
+	except:
+		context = None
 
 	return render(request, 'core/index.html', context=context)
 
