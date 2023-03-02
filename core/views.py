@@ -7,6 +7,10 @@ from django.db.models import Q
 from bs4 import BeautifulSoup
 import requests
 
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+
 
 # Create your views here.
 
@@ -41,6 +45,17 @@ def sign_up(request):
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+
+
+			email = EmailMessage(
+				"django-test-email",
+				"body",
+				settings.EMAIL_HOST_USER,
+				["abc@gmail.com"],
+			)
+			email.fail_silently = False
+			email.send()
+
 			login(request, user)
 
 			return redirect('/')
