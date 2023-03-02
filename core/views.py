@@ -46,7 +46,6 @@ def sign_up(request):
 		if form.is_valid():
 			user = form.save()
 
-
 			email = EmailMessage(
 				"django-test-email",
 				"body",
